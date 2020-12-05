@@ -2,33 +2,49 @@ import java.util.ArrayList;
 
 public class Valores implements ValoresITF{
 	
-	ArrayList<Integer> valores = new ArrayList();//trocar pra arry.... nem lembro como usar kk
+	int valores[] = new int [10];
 	
 
 	@Override
 	public boolean ins(int v) {
-		valores.add(v);
-		if(valores.contains(v)) {
-			return true;
-		};
+		for(int i =0; i <valores.length; i++) {
+			if(valores[i]==0) {
+				valores[i]=v;
+				return true;
+			}
+		}
 		return false;
 	}
 
 	@Override
-	public int del(int i) {
-		valores.remove(i);
-		if(valores.contains(i)) {
-			return i;
+	public int del(int i) { //"i" valor da posiçao do array
+		int aux =0;
+		boolean flag = false;
+		for(int a = 0; a < valores.length; a++) {
+			if(valores[a]!=0) {
+				flag = true;
+			}
 		}
-		return -1;
+		if(flag) {
+			if(i >=0 && i<=9) {
+				aux =valores[i];
+				valores[i] = 0;
+			}
+			return aux;
+		}else {
+			return -1;
+		}
+		
 	}
 
 	@Override
 	public int size() {
-		int tamanho = valores.size();
-		if (tamanho==0) {
-			return -1;
-		} 
+		int tamanho = 0;
+		for(int i =0; i <valores.length; i++) {
+			if(valores[i]!=0){
+				tamanho = tamanho +1;
+			}
+		}
 		return tamanho;
 	}
 
